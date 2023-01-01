@@ -16,7 +16,7 @@ class SudokuGeneratorPerformanceTests: XCTestCase {
     
     // Test generating solutions using the random placement algorithm.
     func testGenerateRandomSolution() {
-        let generator = RandomSudokuGenerator()
+        let generator = RandomSudokuGenerator.self
         
         measure {
             for _ in 1 ... 10 {
@@ -27,11 +27,11 @@ class SudokuGeneratorPerformanceTests: XCTestCase {
     
     // Test generating and validating solutions using the random placement algorithm.
     func testGenerateAndValidateRandomSolution() {
-        let generator = RandomSudokuGenerator()
+        let generator = RandomSudokuGenerator.self
         
         measure {
             for _ in 1 ... 10 {
-                guard let sudoku = generator.generateSolution(), sudoku.isComplete() else { return XCTFail("nil or invalid solution") }
+                guard let sudoku = generator.generateSolution(), sudoku.isComplete else { return XCTFail("nil or invalid solution") }
             }
         }
     }

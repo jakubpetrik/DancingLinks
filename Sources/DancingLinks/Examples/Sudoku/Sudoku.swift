@@ -11,14 +11,14 @@ import Common
 /**
  Dimensions of a sudoku box. Specifies the number of rows and columns.
  */
-struct Dimensions {
+public struct Dimensions {
     
     // MARK: Constraints
     
     /// Specifies lower and upper bounds for the number of rows and number of columns in a box.
     /// Minimum = 2, maximum = 32.
     /// The number of cells (rows * columns) should be less than or equal to the BitSet maximum value.
-    enum Bounds {
+    public enum Bounds {
         
         /// Range of the allowed number of columns in a box.
         static let columns = 2 ... 32
@@ -35,12 +35,12 @@ struct Dimensions {
     // MARK: Stored properties
     
     /// Box dimensions, constrained by Bounds.
-    let rows, columns: Int
+    public let rows, columns: Int
     
     // MARK: Computed properties
     
     /// The number of cells in a box = rows * columns.
-    var cells: Int {
+    public var cells: Int {
         rows * columns
     }
     
@@ -51,7 +51,7 @@ struct Dimensions {
     /// - Parameter columns: Number of columns in a box (range 2 ... 32).
     /// The number of cells should be in the range 4 ..< 64 (assuming 64 bit Int).
     /// Fails if the dimensions are outside the Bounds ranges.
-    init?(rows: Int, columns: Int) {
+    public init?(rows: Int, columns: Int) {
         guard Bounds.rows.contains(rows), Bounds.columns.contains(columns), rows * columns <= Bounds.maxCells else { return nil }
         
         self.rows = rows
@@ -87,27 +87,27 @@ extension Dimensions: Equatable {}
  * Number of sudoku cells = 36
  * Each non-nil cell value must lie in the range 1 ... 6 and be unique in the houses containing that cell.
  */
-struct Sudoku {
+public struct Sudoku {
     
     // MARK: Stored properties
     
     /// The dimensions of a box.
-    let dimensions: Dimensions
+    public let dimensions: Dimensions
     
     /// The list of all values within the sudoku, in row-major order.
     /// The size of the array equals the number of cells in the sudoku.
     /// The array elements should be nil or in the range 1 ... sudoku size.
-    let values: [Int?]
+    public let values: [Int?]
     
     // MARK: Computed properties
     
     /// Number of rows and columns in the sudoku.
-    var size: Int {
+    public var size: Int {
         dimensions.cells
     }
     
     /// Number of cells in the sudoku.
-    var cells: Int {
+    public var cells: Int {
         size * size
     }
     
@@ -126,7 +126,7 @@ struct Sudoku {
     /// - Parameter values: List of givens and empty cells (nil values), in row-major order.
     /// - Parameter rows: The number of rows within a box. Default = 3.
     /// - Parameter columns: The number of columns within a box. Default = 3.
-    init?(values: [Int?], rows: Int = 3, columns: Int = 3) {
+    public init?(values: [Int?], rows: Int = 3, columns: Int = 3) {
         guard let dimensions = Dimensions(rows: rows, columns: columns) else { return nil }
         
         self.init(values: values, dimensions: dimensions)
@@ -181,7 +181,7 @@ extension Sudoku: Equatable {}
 /**
  Convenience methods
  */
-extension Sudoku {
+public extension Sudoku {
     
     // MARK: Formats
     
@@ -290,7 +290,7 @@ extension Sudoku {
     // MARK: Testing
     
     /// Returns true if there are no empty cells, false otherwise.
-    func isComplete() -> Bool {
+    var isComplete: Bool {
         !values.contains(nil)
     }
     

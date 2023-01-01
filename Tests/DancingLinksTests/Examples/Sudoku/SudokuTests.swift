@@ -577,8 +577,8 @@ class SudokuTests: XCTestCase {
         guard let sudoku1 = Sudoku(string: values1, rows: 2, columns: 2) else { return XCTFail("Nil sudoku") }
         guard let sudoku2 = Sudoku(string: values2, rows: 2, columns: 2) else { return XCTFail("Nil sudoku") }
 
-        XCTAssertTrue(sudoku1.isComplete())
-        XCTAssertFalse(sudoku2.isComplete())
+        XCTAssertTrue(sudoku1.isComplete)
+        XCTAssertFalse(sudoku2.isComplete)
     }
 
     // MARK: Input formatting

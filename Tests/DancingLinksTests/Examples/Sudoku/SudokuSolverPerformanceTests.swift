@@ -21,7 +21,7 @@ class SudokuSolverPerformanceTests: XCTestCase {
         measure {
             for _ in 1 ... 10 {
                 guard let solution = SudokuSolver.solve(sudoku: evil, algorithm: .classy) else { return XCTFail("Nil solution") }
-                guard solution.isComplete() else { return XCTFail("Incomplete solution") }
+                guard solution.isComplete else { return XCTFail("Incomplete solution") }
             }
         }
     }
@@ -33,7 +33,7 @@ class SudokuSolverPerformanceTests: XCTestCase {
         measure {
             for _ in 1 ... 10 {
                 guard let solution = SudokuSolver.solve(sudoku: evil) else { return XCTFail("Nil solution") }
-                guard solution.isComplete() else { return XCTFail("Incomplete solution") }
+                guard solution.isComplete else { return XCTFail("Incomplete solution") }
             }
         }
     }
@@ -45,7 +45,7 @@ class SudokuSolverPerformanceTests: XCTestCase {
         measure {
             for _ in 1 ... 10 {
                 guard let solution = SudokuSolver.solve(sudoku: evil, algorithm: .structuredNR) else { return XCTFail("Nil solution") }
-                guard solution.isComplete() else { return XCTFail("Incomplete solution") }
+                guard solution.isComplete else { return XCTFail("Incomplete solution") }
             }
         }
     }
@@ -58,7 +58,7 @@ class SudokuSolverPerformanceTests: XCTestCase {
         measure {
             for sudoku in sudokus {
                 guard let solution = SudokuSolver.solve(sudoku: sudoku) else { return XCTFail("Nil solution") }
-                guard solution.isComplete() else { return XCTFail("Incomplete solution") }
+                guard solution.isComplete else { return XCTFail("Incomplete solution") }
             }
         }
     }
@@ -68,7 +68,7 @@ class SudokuSolverPerformanceTests: XCTestCase {
         measure {
             for sudoku in Self.inkalaSudokus.values {
                 guard let solution = SudokuSolver.solve(sudoku: sudoku) else { return XCTFail("Nil solution") }
-                guard solution.isComplete() else { return XCTFail("Incomplete solution") }
+                guard solution.isComplete else { return XCTFail("Incomplete solution") }
             }
         }
     }
@@ -91,7 +91,7 @@ class SudokuSolverPerformanceTests: XCTestCase {
         measure {
             for _ in 1 ... 10 {
                 guard let solution = SudokuSolver.solve(sudoku: empty) else { return XCTFail("Nil solution") }
-                guard solution.isComplete() else { return XCTFail("Incomplete solution") }
+                guard solution.isComplete else { return XCTFail("Incomplete solution") }
             }
         }
     }

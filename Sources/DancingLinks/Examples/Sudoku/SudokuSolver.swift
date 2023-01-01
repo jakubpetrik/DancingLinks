@@ -11,7 +11,7 @@ import Common
 /**
  A cell with (resolved) given in a sudoku.
  */
-struct Cell: Hashable {
+public struct Cell: Hashable {
     
     /// Index of a sudoku cell in row-major order.
     let index: Int
@@ -30,12 +30,12 @@ extension Sudoku: Grid {
     // MARK: Computed properties
     
     /// Maximum number of mandatory constraints for the DancingLinks input.
-    var constraints: Int {
+    public var constraints: Int {
         cells * 4
     }
     
     /// Maximum number of optional constraints for the DancingLinks input.
-    var optionalConstraints: Int {
+    public var optionalConstraints: Int {
         0
     }
     
@@ -44,7 +44,7 @@ extension Sudoku: Grid {
     /// Generates the rows and passes them to the consumer.
     /// Limits an empty cell's rows to those numbers that are not used as a given in any of the cell's houses.
     /// Generates one row for non-empty cells.
-    func generateRows(consume: (Cell, Int...) -> ()) {
+    public func generateRows(consume: (Cell, Int...) -> ()) {
         let rows = dimensions.rows, columns = dimensions.columns
         let allOptions = BitSet(1 ... size)
         let givens = collectValues(rows, columns, size)
@@ -93,14 +93,14 @@ extension Sudoku: Grid {
 /**
  Sudoku solver using DancingLinks algorithm.
  */
-class SudokuSolver {
+public final class SudokuSolver {
     
     // MARK: Solving sudokus
     
     /// Returns a solution of the sudoku, or nil if no solution found.
     /// Does not verify the existence of additional solutions.
     /// Default algorithm = StructuredDancingLinks.
-    static func solve(sudoku: Sudoku, algorithm: DancingLinksAlgorithm = .structured) -> Sudoku? {
+    public static func solve(sudoku: Sudoku, algorithm: DancingLinksAlgorithm = .structured) -> Sudoku? {
         guard let solution = algorithm.solver().solve(grid: sudoku) else { return nil }
         var values = [Int?](repeating: nil, count: sudoku.cells)
         

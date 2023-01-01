@@ -123,7 +123,7 @@ class SudokuSolverTests: XCTestCase {
         
         for sudoku in sudokus {
             guard let solution = SudokuSolver.solve(sudoku: sudoku) else { return XCTFail("Nil solution") }
-            guard solution.isComplete() else { return XCTFail("Incomplete solution") }
+            guard solution.isComplete else { return XCTFail("Incomplete solution") }
             
             XCTAssertTrue(zip(sudoku.values, solution.values).allSatisfy { (v1, v2) in v1 == nil || v1 == v2 })
         }
